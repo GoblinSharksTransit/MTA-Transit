@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server .",
+    "start": "webpack-dev-server & nodemon server/server.js",
     "build": "webpack ."
   },
   "author": "",
@@ -27,6 +27,8 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.5",
+    "gtfs-realtime-bindings": "^1.1.1",
+    "nodemon": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
