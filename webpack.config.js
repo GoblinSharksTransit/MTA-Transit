@@ -14,14 +14,14 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "public"),
     },
-    proxy: [
-      {
-        context: ["/api"],
-        target: "http://localhost:8080",
-        secure: false,
-        changeOrigin: true,
-      },
-    ],
+    // proxy: [
+    //   {
+    //     context: ["/api"],
+    //     target: "http://localhost:8080",
+    //     secure: false,
+    //     changeOrigin: true,
+    //   },
+    // ],
     open: true,
     hot: true,
     liveReload: true,
