@@ -12,16 +12,8 @@ module.exports = {
   devServer: {
     port: "3000",
     static: {
-      directory: path.join(__dirname, "public"),
+      directory: path.join(__dirname, 'Public'),
     },
-    // proxy: [
-    //   {
-    //     context: ["/api"],
-    //     target: "http://localhost:8080",
-    //     secure: false,
-    //     changeOrigin: true,
-    //   },
-    // ],
     open: true,
     hot: true,
     liveReload: true,
@@ -34,13 +26,17 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: 'babel-loader',
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "public", "index.html"),
+      template: path.join(__dirname, 'Public', 'index.html'),
     }),
   ],
 };
