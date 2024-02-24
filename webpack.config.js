@@ -12,8 +12,8 @@ module.exports = {
   devServer: {
     port: '3000',
     static: {
-      directory: path.join(__dirname, 'public')
-},
+      directory: path.join(__dirname, 'Public'),
+    },
     open: true,
     hot: true,
     liveReload: true,
@@ -24,15 +24,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, 
-        exclude: /node_modules/, 
-        use: 'babel-loader', 
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'public', 'index.html')
-    })
-  ]
+      template: path.join(__dirname, 'Public', 'index.html'),
+    }),
+  ],
 };

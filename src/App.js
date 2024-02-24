@@ -1,11 +1,16 @@
-import React from "react";
+import React from 'react';
 
-const App = () =>{
-    return (
-        <h1>
-            Hello world! I am using React
-        </h1>
-    )
-}
+const App = () => {
+  const SubwayContainer = (props) => {
+    // return <div className="SubwayContainer"></div>;
+    return <div className='SubwayContainer'>Subway Lines</div>;
+  };
+  return (
+    <div>
+      <h1>Subway Alerts</h1>
+      <SubwayContainer />
+    </div>
+  );
+};
 
-export default App
+export default App;
