@@ -10,11 +10,13 @@ const SubwayLineComponent = (props) => {
                 <span id="subwayLine"></span>
             </div>
             <div className="status">
-                <p>Status: On Time</p>
+                <p>Status: {props.trainStatus}</p>
                 <span id="status"></span>
             </div>
             <div className="additionalInformation">
-                <p>Additional Information: None</p>
+                <p>Additional Information:</p>
+                <p>Start: {props.start}</p>
+                <p>End: {props.end}</p>
                 <span id="subwayLine"></span>
             </div>
         </div>

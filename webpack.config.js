@@ -17,6 +17,12 @@ module.exports = {
     open: true,
     hot: true,
     liveReload: true,
+    proxy: [{
+      context: ['/subway'],
+      target: 'http://localhost:8080',
+     
+      
+    }],
   },
   resolve: {
     extensions: [".js", ".jsx", ".json"],
