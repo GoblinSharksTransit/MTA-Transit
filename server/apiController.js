@@ -17,7 +17,7 @@ const ApiController = {
       );
 
       const currentTime = Math.floor(Date.now() / 1000);
-      const routes = req.body.subways;
+      const routes = ["1","2", "3", "4", "5", "6", "7", "A", "C", "E", "B", "D", "F", "M", "G", "L", "N", "Q", "R", "W" ];
       const data = [];
 
       routes.forEach((route) => {
