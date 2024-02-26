@@ -8,4 +8,49 @@ h1 {
   border-style: solid;
   border-width: 5px;
   height: 700px;
+  overflow-y: scroll
+}
+
+.totalBox {
+  display: grid;
+  padding: 25px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  border-style: solid;
+  margin: 10px 
+}
+
+.subwayLine {
+  font-family: Arial, Helvetica, sans-serif;
+
+  /* background-color: red; */
+  border-style: solid;
+  border-radius: 50px;
+  grid-column: 1;
+  grid-row: span 2;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center;
+}
+
+.status {
+  text-align: left;
+  border-style: solid;
+  border-radius: 10px;
+  grid-column: 2/6;
+  grid-row: 1;
+  padding: 5px
+}
+
+.additionalInformation {
+  
+  text-align: left;
+  border-style: solid;
+  border-radius: 10px;
+  grid-column: 2/6;
+  grid-row: 2;
+  padding: 5px
+
 }
