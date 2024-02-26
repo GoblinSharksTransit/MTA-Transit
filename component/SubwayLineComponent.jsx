@@ -2,11 +2,11 @@
 import React from "react";
 
 
-const SubwayLineComponent = () => {
+const SubwayLineComponent = (props) => {
     return (
         <div className="totalBox">
-            <div className="subwayLine">
-                <p>2</p>
+            <div className="subwayLine" style = {{backgroundColor : props.bgColor}}>
+                <p>{props.trainLine}</p>
                 <span id="subwayLine"></span>
             </div>
             <div className="status">
