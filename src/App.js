@@ -1,14 +1,33 @@
 import React from 'react';
 import SubwayLineComponent from '../component/SubwayLineComponent';
+import { useState, useEffect } from 'react';
 
 const App = () => {
   const SubwayContainer = (props) => {
     // return <div className="SubwayContainer"></div>;
 
-    const subwayLines = []
-    for (let i = 0; i < props.trainLine.length; i++){
-      subwayLines.push(<SubwayLineComponent bgColor = {props.bgColor[i]} trainLine = {props.trainLine[i]} />);
+    const subwayLines = [];
+  
+    for (let i = 0; i < props.trainStatus.length; i++){
+      subwayLines.push(
+        <SubwayLineComponent
+        bgColor={props.bgColor}
+        trainLine={props.trainLine}
+        trainStatus={props.trainStatus[i]}
+        start={props.start[i]}
+        end={props.end[i]}
+        />
+      )
     }
+    
+    // for (let i = 0; i < props.trainLine.length; i++) {
+    //   subwayLines.push(
+    //     <SubwayLineComponent
+    //       bgColor={props.bgColor[i]}
+    //       trainLine={props.trainLine[i]}
+    //     />
+    //   );
+    // }
 
     return (
       <div className='SubwayContainer'>
@@ -17,13 +36,70 @@ const App = () => {
           bgColor={props.bgColor}
           trainLine={props.trainLine}
         /> */}
+        {/* <SubwayLineComponent bgColor={props.bgColor} trainLine={props.trainLine} trainStatus={props.trainStatus}/> */}
         {subwayLines}
       </div>
     );
   };
 
-  const trainLine = 'G';
+  const [trainLine, setTrainLine] = useState('')
+  const [trainStatus, setTrainStatus] = useState([])
+  const [start, setStart] = useState([])
+  const [end, setEnd] = useState([])
+
+
+
+
+  // useEffect (()=> {
+  //   const result = fetch('/subway', { method: 'GET' })
+  //   .then((response) => {
+  //     return response.json();
+  //   })
+  //   .then((response) => {
+  //     return response;
+  //   })
+  //   .catch((err) => {
+  //     console.log('error');
+  //   });
+  // }, [])
+
+useEffect (() => {
+  fetchData();
+}, [])
+
+const fetchData = async () => {
+  try {
+    const response = await fetch('/subway')
+    const result = await response.json()
+    console.log('abcd', result[1].message)
+    setTrainLine(result[0])
+    const trainStatuses = []
+    const trainStart = []
+    const trainEnd = []
+    for (let i = 1; i < result.length; i++){
+      trainStatuses.push(result[i].message)
+      trainStart.push(result[i].start)
+      trainEnd.push(result[i].end)
+
+    }
+    setTrainStatus(trainStatuses)
+    setStart(trainStart)
+    setEnd(trainEnd)
+
+
+  } catch (error) {
+    console.log("error")
+  }
+}
+
+
+// console.log(object)
+// console.log('abc', Object.keys(object))
+// let trainStatus = trainInfo[1].message
+
   let bgColor = '';
+  
+  
   switch (trainLine) {
     case 1:
       bgColor = 'red';
@@ -93,15 +169,28 @@ const App = () => {
       break;
   }
 
-  const lines = [1, 4, 7, 'A', 'B', 'G', 'L', 'J', 'N'];
-  const colors = ['red', 'green', 'purple', 'blue', 'orange', 'lightgreen', 'gray', 'brown', 'yellow']
+  console.log('bgColor : ', bgColor)
+
+
+  // const lines = result[0];
+  // const colors = [
+  //   'red',
+  //   'green',
+  //   'purple',
+  //   'blue',
+  //   'orange',
+  //   'lightgreen',
+  //   'gray',
+  //   'brown',
+  //   'yellow',
+  // ];
 
   console.log(bgColor);
 
   return (
     <div>
       <h1>Subway Alerts</h1>
-      <SubwayContainer bgColor={colors} trainLine={lines} />
+      <SubwayContainer bgColor={bgColor} trainLine={trainLine} trainStatus={trainStatus} start={start} end={end}/>
       <div></div>
     </div>
   );
