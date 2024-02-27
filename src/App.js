@@ -4,14 +4,13 @@ import { useState, useEffect } from 'react';
 
 const App = () => {
   const SubwayContainer = (props) => {
-    // return <div className="SubwayContainer"></div>;
 
     const subwayLines = [];
-  
+
     for (let i = 0; i < props.trainLine.length; i++){
       subwayLines.push(
         <SubwayLineComponent
-        bgColor={props.bgColor[i]}
+        color={props.color[i]}
         trainLine={props.trainLine[i]}
         trainStatus={props.trainStatus[i]}
         start={props.start[i]}
@@ -46,6 +45,7 @@ const App = () => {
   const [trainStatus, setTrainStatus] = useState([])
   const [start, setStart] = useState([])
   const [end, setEnd] = useState([])
+  const [color, setColor] = useState([])
 
 
 
@@ -76,7 +76,9 @@ const fetchData = async () => {
     const trainStatuses = []
     const trainStart = []
     const trainEnd = []
-    console.log(result);
+    const bgColor = [];
+    
+  
     for(let i = 0; i < result.length; i++){
       let empty = true;
       for (let j = 1; j < result[i].length; j++){
@@ -95,7 +97,84 @@ const fetchData = async () => {
 
       }
     }
-    console.log(trainLines);
+  
+    // console.log("TrainLines for Colors", trainLines)
+
+  for(let i = 0; i < trainLines.length; i++){
+    let currentTrain = trainLines[i];
+    switch (currentTrain) {
+      case '1':
+        bgColor.push('red');
+        break;
+      case '2':
+        bgColor.push('red');
+        break;
+      case '3':
+        bgColor.push('red');
+        break;
+      case '4':
+        bgColor.push('green');
+        break;
+      case '5':
+        bgColor.push('green');
+        break;
+      case '6':
+        bgColor.push('green');
+        break;
+      case 'N':
+        bgColor.push('yellow');
+        break;
+      case 'Q':
+        bgColor.push('yellow');
+        break;
+      case 'R':
+        bgColor.push('yellow');
+        break;
+      case 'W':
+        bgColor.push('yellow');
+        break;
+      case 'B':
+        bgColor.push('orange');
+        break;
+      case 'D':
+        bgColor.push('orange');
+        break;
+      case 'F':
+        bgColor.push('orange');
+        break;
+      case 'M':
+        bgColor.push('orange');
+        break;
+      case 'A':
+        bgColor.push('blue');
+        break;
+      case 'C':
+        bgColor.push('blue');
+        break;
+      case 'E':
+        bgColor.push('blue');
+        break;
+      case 'G':
+        bgColor.push('lightgreen');
+        break;
+      case 'L':
+        bgColor.push('gray');
+        break;
+      case 'J':
+        bgColor.push('brown');
+        break;
+      case 'Z':
+        bgColor.push('brown');
+        break;
+      case '7':
+        bgColor.push('purple');
+        break;
+    }
+  }
+
+  console.log(bgColor)
+
+    setColor(bgColor)
     setTrainLine(trainLines)
     setTrainStatus(trainStatuses)
     setStart(trainStart)
@@ -111,89 +190,6 @@ const fetchData = async () => {
 // console.log(object)
 // console.log('abc', Object.keys(object))
 // let trainStatus = trainInfo[1].message
-
-console.log('trainLine', trainLine);
-
-  const bgColor = [];
-  for(let i = 0; i < trainLine.length; i++){
-    let currentTrain = trainLine[i];
-    switch (currentTrain) {
-      case '1':
-        bgColor.push = 'red';
-        break;
-      case '2':
-        bgColor.push = 'red';
-        break;
-      case '3':
-        bgColor.push = 'red';
-        break;
-      case '4':
-        bgColor.push = 'green';
-        break;
-      case '5':
-        bgColor.push = 'green';
-        break;
-      case '6':
-        bgColor.push = 'green';
-        break;
-      case 'N':
-        bgColor.push = 'yellow';
-        break;
-      case 'Q':
-        bgColor.push = 'yellow';
-        break;
-      case 'R':
-        bgColor.push = 'yellow';
-        break;
-      case 'W':
-        bgColor.push = 'yellow';
-        break;
-      case 'B':
-        bgColor.push = 'orange';
-        break;
-      case 'D':
-        bgColor.push = 'orange';
-        break;
-      case 'F':
-        bgColor.push = 'orange';
-        break;
-      case 'M':
-        bgColor.push = 'orange';
-        break;
-      case 'A':
-        bgColor.push = 'blue';
-        break;
-      case 'C':
-        bgColor.push = 'blue';
-        break;
-      case 'E':
-        bgColor.push = 'blue';
-        break;
-      case 'G':
-        bgColor.push = 'lightgreen';
-        break;
-      case 'L':
-        bgColor.push = 'gray';
-        break;
-      case 'J':
-        bgColor.push = 'brown';
-        break;
-      case 'Z':
-        bgColor.push = 'brown';
-        break;
-      case '7':
-        bgColor.push = 'purple';
-        break;
-    }
-  }
-
-  console.log('trainLine: ', trainLine);
-  console.log('bgColor: ', trainLine);
-  console.log('trainLine: ', trainLine);
-  
-  
-
-  // console.log('bgColor : ', bgColor)
 
 
   // const lines = result[0];
@@ -214,7 +210,7 @@ console.log('trainLine', trainLine);
   return (
     <div>
       <h1>Subway Alerts</h1>
-      <SubwayContainer bgColor={bgColor} trainLine={trainLine} trainStatus={trainStatus} start={start} end={end}/>
+      <SubwayContainer color={color} trainLine={trainLine} trainStatus={trainStatus} start={start} end={end}/>
       <div></div>
     </div>
   );

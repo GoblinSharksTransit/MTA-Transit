@@ -5,7 +5,7 @@ import React from "react";
 const SubwayLineComponent = (props) => {
     return (
         <div className="totalBox">
-            <div className="subwayLine" style = {{backgroundColor : props.bgColor}}>
+            <div className="subwayLine" style = {{backgroundColor : props.color}}>
                 <p>{props.trainLine}</p>
                 <span id="subwayLine"></span>
             </div>
