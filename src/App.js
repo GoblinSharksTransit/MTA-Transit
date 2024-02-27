@@ -8,11 +8,11 @@ const App = () => {
 
     const subwayLines = [];
   
-    for (let i = 0; i < props.trainStatus.length; i++){
+    for (let i = 0; i < props.trainLine.length; i++){
       subwayLines.push(
         <SubwayLineComponent
-        bgColor={props.bgColor}
-        trainLine={props.trainLine}
+        bgColor={props.bgColor[i]}
+        trainLine={props.trainLine[i]}
         trainStatus={props.trainStatus[i]}
         start={props.start[i]}
         end={props.end[i]}
@@ -42,7 +42,7 @@ const App = () => {
     );
   };
 
-  const [trainLine, setTrainLine] = useState('')
+  const [trainLine, setTrainLine] = useState([])
   const [trainStatus, setTrainStatus] = useState([])
   const [start, setStart] = useState([])
   const [end, setEnd] = useState([])
@@ -71,17 +71,32 @@ const fetchData = async () => {
   try {
     const response = await fetch('/subway')
     const result = await response.json()
-    console.log('abcd', result[1].message)
-    setTrainLine(result[0])
+    
+    const trainLines = [];
     const trainStatuses = []
     const trainStart = []
     const trainEnd = []
-    for (let i = 1; i < result.length; i++){
-      trainStatuses.push(result[i].message)
-      trainStart.push(result[i].start)
-      trainEnd.push(result[i].end)
+    console.log(result);
+    for(let i = 0; i < result.length; i++){
+      let empty = true;
+      for (let j = 1; j < result[i].length; j++){
+        empty = false;
+        trainLines.push(result[i][0]);
+        trainStatuses.push(result[i][j].message)
+        trainStart.push(result[i][j].start)
+        trainEnd.push(result[i][j].end)
+  
+      }
+      if(empty){
+        trainLines.push(result[i][0]);
+        trainStatuses.push('Good')
+        trainStart.push('N/A')
+        trainEnd.push('N/A')
 
+      }
     }
+    console.log(trainLines);
+    setTrainLine(trainLines)
     setTrainStatus(trainStatuses)
     setStart(trainStart)
     setEnd(trainEnd)
@@ -97,79 +112,88 @@ const fetchData = async () => {
 // console.log('abc', Object.keys(object))
 // let trainStatus = trainInfo[1].message
 
-  let bgColor = '';
-  
-  
-  switch (trainLine) {
-    case 1:
-      bgColor = 'red';
-      break;
-    case 2:
-      bgColor = 'red';
-      break;
-    case 3:
-      bgColor = 'red';
-      break;
-    case 4:
-      bgColor = 'green';
-      break;
-    case 5:
-      bgColor = 'green';
-      break;
-    case 6:
-      bgColor = 'green';
-      break;
-    case 'N':
-      bgColor = 'yellow';
-      break;
-    case 'Q':
-      bgColor = 'yellow';
-      break;
-    case 'R':
-      bgColor = 'yellow';
-      break;
-    case 'W':
-      bgColor = 'yellow';
-      break;
-    case 'B':
-      bgColor = 'orange';
-      break;
-    case 'D':
-      bgColor = 'orange';
-      break;
-    case 'F':
-      bgColor = 'orange';
-      break;
-    case 'M':
-      bgColor = 'orange';
-      break;
-    case 'A':
-      bgColor = 'blue';
-      break;
-    case 'C':
-      bgColor = 'blue';
-      break;
-    case 'E':
-      bgColor = 'blue';
-      break;
-    case 'G':
-      bgColor = 'lightgreen';
-      break;
-    case 'L':
-      bgColor = 'gray';
-      break;
-    case 'J':
-      bgColor = 'brown';
-      break;
-    case 'Z':
-      bgColor = 'brown';
-      break;
-    case 7:
-      bgColor = 'purple';
-      break;
+console.log('trainLine', trainLine);
+
+  const bgColor = [];
+  for(let i = 0; i < trainLine.length; i++){
+    let currentTrain = trainLine[i];
+    switch (currentTrain) {
+      case '1':
+        bgColor.push = 'red';
+        break;
+      case '2':
+        bgColor.push = 'red';
+        break;
+      case '3':
+        bgColor.push = 'red';
+        break;
+      case '4':
+        bgColor.push = 'green';
+        break;
+      case '5':
+        bgColor.push = 'green';
+        break;
+      case '6':
+        bgColor.push = 'green';
+        break;
+      case 'N':
+        bgColor.push = 'yellow';
+        break;
+      case 'Q':
+        bgColor.push = 'yellow';
+        break;
+      case 'R':
+        bgColor.push = 'yellow';
+        break;
+      case 'W':
+        bgColor.push = 'yellow';
+        break;
+      case 'B':
+        bgColor.push = 'orange';
+        break;
+      case 'D':
+        bgColor.push = 'orange';
+        break;
+      case 'F':
+        bgColor.push = 'orange';
+        break;
+      case 'M':
+        bgColor.push = 'orange';
+        break;
+      case 'A':
+        bgColor.push = 'blue';
+        break;
+      case 'C':
+        bgColor.push = 'blue';
+        break;
+      case 'E':
+        bgColor.push = 'blue';
+        break;
+      case 'G':
+        bgColor.push = 'lightgreen';
+        break;
+      case 'L':
+        bgColor.push = 'gray';
+        break;
+      case 'J':
+        bgColor.push = 'brown';
+        break;
+      case 'Z':
+        bgColor.push = 'brown';
+        break;
+      case '7':
+        bgColor.push = 'purple';
+        break;
+    }
   }
 
-  console.log('bgColor : ', bgColor)
+  console.log('trainLine: ', trainLine);
+  console.log('bgColor: ', trainLine);
+  console.log('trainLine: ', trainLine);
+  
+  
+
+  // console.log('bgColor : ', bgColor)
 
 
   // const lines = result[0];
@@ -185,7 +209,7 @@ const fetchData = async () => {
   //   'yellow',
   // ];
 
-  console.log(bgColor);
+  // console.log(bgColor);
 
   return (
     <div>
