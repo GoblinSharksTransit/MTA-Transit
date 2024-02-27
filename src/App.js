@@ -4,10 +4,9 @@ import { useState, useEffect } from 'react';
 
 const App = () => {
   const SubwayContainer = (props) => {
-    // return <div className="SubwayContainer"></div>;
 
     const subwayLines = [];
-  
+
     for (let i = 0; i < props.trainLine.length; i++){
       subwayLines.push(
         <SubwayLineComponent
